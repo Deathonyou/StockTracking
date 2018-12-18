@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bc6ab2ea5b5f49adbb3582d9ea3b888f" Name="Diagram1">
+        <EntityTypeShape EntityType="StockTrackingModel.Brand" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockTrackingModel.Department" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockTrackingModel.ProductAccept" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockTrackingModel.ProductRegister" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockTrackingModel.Product" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockTrackingModel.ProductType" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockTrackingModel.UserRole" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockTrackingModel.User" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="StockTrackingModel.FK__Products__BrandI__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="StockTrackingModel.FK__Users__Departmen__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="StockTrackingModel.FK__ProductAc__UserI__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="StockTrackingModel.FK__Products__Accept__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="StockTrackingModel.FK__ProductRe__Produ__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="StockTrackingModel.FK__ProductRe__UserI__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="StockTrackingModel.FK__Products__Produc__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="StockTrackingModel.FK__Users__RoleID__3D5E1FD2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

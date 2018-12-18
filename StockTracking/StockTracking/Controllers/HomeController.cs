@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockTracking.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,16 @@ namespace StockTracking.Controllers
 {
     public class HomeController : Controller
     {
+        StockTrackingContext context = new StockTrackingContext();
+
         public ActionResult Index()
         {
-            return View();
+            var model = context.Brands.ToList();
+            return View("Index",model);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+       
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+       
     }
 }
