@@ -10,108 +10,116 @@ using StockTracking.Models;
 
 namespace StockTracking.Controllers
 {
-    public class BrandsController : Controller
+    public class ProductRegistersController : Controller
     {
         private StockTrackingContext db = new StockTrackingContext();
 
-        // GET: Brands
+        // GET: ProductRegisters
         public ActionResult Index()
         {
-            return View(db.Brands.ToList());
+            var productRegisters = db.ProductRegisters.Include(p => p.Product).Include(p => p.User);
+            return View(productRegisters.ToList());
         }
 
-        // GET: Brands/Details/5
+        // GET: ProductRegisters/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = db.Brands.Find(id);
-            if (brand == null)
+            ProductRegister productRegister = db.ProductRegisters.Find(id);
+            if (productRegister == null)
             {
                 return HttpNotFound();
             }
-            return View(brand);
+            return View(productRegister);
         }
 
-        // GET: Brands/Create
+        // GET: ProductRegisters/Create
         public ActionResult Create()
         {
+            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName");
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName");
             return View();
         }
 
-        // POST: Brands/Create
+        // POST: ProductRegisters/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BrandID,BrandName")] Brand brand)
+        public ActionResult Create([Bind(Include = "RegisterID,UserID,ProductID")] ProductRegister productRegister)
         {
             if (ModelState.IsValid)
             {
-                db.Brands.Add(brand);
+                db.ProductRegisters.Add(productRegister);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(brand);
+            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productRegister.ProductID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productRegister.UserID);
+            return View(productRegister);
         }
 
-        // GET: Brands/Edit/5
+        // GET: ProductRegisters/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = db.Brands.Find(id);
-            if (brand == null)
+            ProductRegister productRegister = db.ProductRegisters.Find(id);
+            if (productRegister == null)
             {
                 return HttpNotFound();
             }
-            return View(brand);
+            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productRegister.ProductID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productRegister.UserID);
+            return View(productRegister);
         }
 
-        // POST: Brands/Edit/5
+        // POST: ProductRegisters/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BrandID,BrandName")] Brand brand)
+        public ActionResult Edit([Bind(Include = "RegisterID,UserID,ProductID")] ProductRegister productRegister)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(brand).State = EntityState.Modified;
+                db.Entry(productRegister).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(brand);
+            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productRegister.ProductID);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productRegister.UserID);
+            return View(productRegister);
         }
 
-        // GET: Brands/Delete/5
+        // GET: ProductRegisters/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = db.Brands.Find(id);
-            if (brand == null)
+            ProductRegister productRegister = db.ProductRegisters.Find(id);
+            if (productRegister == null)
             {
                 return HttpNotFound();
             }
-            return View(brand);
+            return View(productRegister);
         }
 
-        // POST: Brands/Delete/5
+        // POST: ProductRegisters/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Brand brand = db.Brands.Find(id);
-            db.Brands.Remove(brand);
+            ProductRegister productRegister = db.ProductRegisters.Find(id);
+            db.ProductRegisters.Remove(productRegister);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

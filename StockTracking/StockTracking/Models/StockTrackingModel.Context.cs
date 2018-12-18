@@ -27,7 +27,6 @@ namespace StockTracking.Models
     
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<ProductAccept> ProductAccepts { get; set; }
         public virtual DbSet<ProductRegister> ProductRegisters { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductType> ProductTypes { get; set; }

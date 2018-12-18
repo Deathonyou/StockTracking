@@ -4,30 +4,35 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BrandName)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Marka Listesi</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BrandName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BrandID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BrandID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BrandID })
-        </td>
-    </tr>
-}
+        <p>
+            @Html.ActionLink("Yeni Marka Ekle", "Create", null, new { @class = "btn btn-primary" })
+        </p>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BrandName)
+                </th>
+                <th></th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrandName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "Edit", new { id = item.BrandID }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Sil", "Delete", new { id = item.BrandID }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

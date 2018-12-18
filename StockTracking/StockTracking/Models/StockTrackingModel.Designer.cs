@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\HasanBerkErgun\source\repos\StockTracking\StockTracking\StockTracking\Models\StockTrackingModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\ferha\Documents\GitHub\StockTracking\StockTracking\StockTracking\Models\StockTrackingModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

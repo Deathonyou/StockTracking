@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StockTrackingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StockTrackingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brands">
           <Key>
             <PropertyRef Name="BrandID" />
@@ -18,16 +18,6 @@
           </Key>
           <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="ProductAccept">
-          <Key>
-            <PropertyRef Name="AcceptID" />
-          </Key>
-          <Property Name="AcceptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AcceptDate" Type="datetime" />
-          <Property Name="ProductPrice" Type="money" />
-          <Property Name="ProductQuantity" Type="int" />
-          <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="ProductRegister">
           <Key>
@@ -43,11 +33,14 @@
           </Key>
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
-          <Property Name="ProductDescription" Type="nvarchar" MaxLength="100" />
           <Property Name="ProductTypeID" Type="int" />
+          <Property Name="ProductDescription" Type="nvarchar" MaxLength="100" />
           <Property Name="ProductStockState" Type="bit" />
-          <Property Name="AcceptID" Type="int" />
+          <Property Name="AcceptDate" Type="nvarchar" MaxLength="16" />
+          <Property Name="ProductPrice" Type="money" />
+          <Property Name="ProductQuantity" Type="int" />
           <Property Name="BrandID" Type="int" />
+          <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="ProductTypes">
           <Key>
@@ -74,18 +67,6 @@
           <Property Name="DepartmentID" Type="int" />
           <Property Name="UserIsActive" Type="bit" />
         </EntityType>
-        <Association Name="FK__ProductAc__UserI__4316F928">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="ProductAccept" Type="Self.ProductAccept" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="ProductAccept">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__ProductRe__Produ__4BAC3F29">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
           <End Role="ProductRegister" Type="Self.ProductRegister" Multiplicity="*" />
@@ -107,18 +88,6 @@
             </Principal>
             <Dependent Role="ProductRegister">
               <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Products__Accept__46E78A0C">
-          <End Role="ProductAccept" Type="Self.ProductAccept" Multiplicity="0..1" />
-          <End Role="Products" Type="Self.Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductAccept">
-              <PropertyRef Name="AcceptID" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="AcceptID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -170,19 +139,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Products_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="StockTrackingModelStoreContainer">
           <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductAccept" EntityType="Self.ProductAccept" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductRegister" EntityType="Self.ProductRegister" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__ProductAc__UserI__4316F928" Association="Self.FK__ProductAc__UserI__4316F928">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="ProductAccept" EntitySet="ProductAccept" />
-          </AssociationSet>
           <AssociationSet Name="FK__ProductRe__Produ__4BAC3F29" Association="Self.FK__ProductRe__Produ__4BAC3F29">
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductRegister" EntitySet="ProductRegister" />
@@ -190,10 +166,6 @@
           <AssociationSet Name="FK__ProductRe__UserI__4AB81AF0" Association="Self.FK__ProductRe__UserI__4AB81AF0">
             <End Role="Users" EntitySet="Users" />
             <End Role="ProductRegister" EntitySet="ProductRegister" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Products__Accept__46E78A0C" Association="Self.FK__Products__Accept__46E78A0C">
-            <End Role="ProductAccept" EntitySet="ProductAccept" />
-            <End Role="Products" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK__Products__BrandI__47DBAE45" Association="Self.FK__Products__BrandI__47DBAE45">
             <End Role="Brands" EntitySet="Brands" />
@@ -211,9 +183,12 @@
             <End Role="UserRoles" EntitySet="UserRoles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_Products_Users" Association="Self.FK_Products_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StockTrackingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -232,18 +207,6 @@
           <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Users__Departmen__3E52440B" FromRole="Departments" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="ProductAccept">
-          <Key>
-            <PropertyRef Name="AcceptID" />
-          </Key>
-          <Property Name="AcceptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AcceptDate" Type="DateTime" Precision="3" />
-          <Property Name="ProductPrice" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="ProductQuantity" Type="Int32" />
-          <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="User" Relationship="Self.FK__ProductAc__UserI__4316F928" FromRole="ProductAccept" ToRole="Users" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Products__Accept__46E78A0C" FromRole="ProductAccept" ToRole="Products" />
         </EntityType>
         <EntityType Name="ProductRegister">
           <Key>
@@ -264,12 +227,15 @@
           <Property Name="ProductDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ProductTypeID" Type="Int32" />
           <Property Name="ProductStockState" Type="Boolean" />
-          <Property Name="AcceptID" Type="Int32" />
           <Property Name="BrandID" Type="Int32" />
           <NavigationProperty Name="Brand" Relationship="Self.FK__Products__BrandI__47DBAE45" FromRole="Products" ToRole="Brands" />
-          <NavigationProperty Name="ProductAccept" Relationship="Self.FK__Products__Accept__46E78A0C" FromRole="Products" ToRole="ProductAccept" />
           <NavigationProperty Name="ProductRegisters" Relationship="Self.FK__ProductRe__Produ__4BAC3F29" FromRole="Products" ToRole="ProductRegister" />
           <NavigationProperty Name="ProductType" Relationship="Self.FK__Products__Produc__45F365D3" FromRole="Products" ToRole="ProductTypes" />
+          <Property Name="AcceptDate" Type="String" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ProductQuantity" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="StockTrackingModel.FK_Products_Users" FromRole="Product" ToRole="User" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -298,9 +264,9 @@
           <Property Name="DepartmentID" Type="Int32" />
           <Property Name="UserIsActive" Type="Boolean" />
           <NavigationProperty Name="Department" Relationship="Self.FK__Users__Departmen__3E52440B" FromRole="Users" ToRole="Departments" />
-          <NavigationProperty Name="ProductAccepts" Relationship="Self.FK__ProductAc__UserI__4316F928" FromRole="Users" ToRole="ProductAccept" />
           <NavigationProperty Name="ProductRegisters" Relationship="Self.FK__ProductRe__UserI__4AB81AF0" FromRole="Users" ToRole="ProductRegister" />
           <NavigationProperty Name="UserRole" Relationship="Self.FK__Users__RoleID__3D5E1FD2" FromRole="Users" ToRole="UserRoles" />
+          <NavigationProperty Name="Products" Relationship="StockTrackingModel.FK_Products_Users" FromRole="User" ToRole="Product" />
         </EntityType>
         <Association Name="FK__Products__BrandI__47DBAE45">
           <End Role="Brands" Type="Self.Brand" Multiplicity="0..1" />
@@ -323,30 +289,6 @@
             </Principal>
             <Dependent Role="Users">
               <PropertyRef Name="DepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProductAc__UserI__4316F928">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="ProductAccept" Type="Self.ProductAccept" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="ProductAccept">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Products__Accept__46E78A0C">
-          <End Role="ProductAccept" Type="Self.ProductAccept" Multiplicity="0..1" />
-          <End Role="Products" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductAccept">
-              <PropertyRef Name="AcceptID" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="AcceptID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -401,7 +343,6 @@
         <EntityContainer Name="StockTrackingContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Brands" EntityType="Self.Brand" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
-          <EntitySet Name="ProductAccepts" EntityType="Self.ProductAccept" />
           <EntitySet Name="ProductRegisters" EntityType="Self.ProductRegister" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
@@ -414,14 +355,6 @@
           <AssociationSet Name="FK__Users__Departmen__3E52440B" Association="Self.FK__Users__Departmen__3E52440B">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProductAc__UserI__4316F928" Association="Self.FK__ProductAc__UserI__4316F928">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="ProductAccept" EntitySet="ProductAccepts" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Products__Accept__46E78A0C" Association="Self.FK__Products__Accept__46E78A0C">
-            <End Role="ProductAccept" EntitySet="ProductAccepts" />
-            <End Role="Products" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductRe__Produ__4BAC3F29" Association="Self.FK__ProductRe__Produ__4BAC3F29">
             <End Role="Products" EntitySet="Products" />
@@ -439,7 +372,23 @@
             <End Role="UserRoles" EntitySet="UserRoles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_Products_Users" Association="StockTrackingModel.FK_Products_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Products_Users">
+          <End Type="StockTrackingModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="StockTrackingModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -462,17 +411,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductAccepts">
-            <EntityTypeMapping TypeName="StockTrackingModel.ProductAccept">
-              <MappingFragment StoreEntitySet="ProductAccept">
-                <ScalarProperty Name="AcceptID" ColumnName="AcceptID" />
-                <ScalarProperty Name="AcceptDate" ColumnName="AcceptDate" />
-                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
-                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProductRegisters">
             <EntityTypeMapping TypeName="StockTrackingModel.ProductRegister">
               <MappingFragment StoreEntitySet="ProductRegister">
@@ -485,12 +423,15 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="StockTrackingModel.Product">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="AcceptDate" ColumnName="AcceptDate" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
                 <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
                 <ScalarProperty Name="ProductStockState" ColumnName="ProductStockState" />
-                <ScalarProperty Name="AcceptID" ColumnName="AcceptID" />
                 <ScalarProperty Name="BrandID" ColumnName="BrandID" />
               </MappingFragment>
             </EntityTypeMapping>

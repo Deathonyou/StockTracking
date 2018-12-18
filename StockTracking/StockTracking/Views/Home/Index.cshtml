@@ -1,20 +1,6 @@
-﻿@using StockTracking.Models
-@model List<Brand>
-@{
+﻿ @{
     ViewBag.Title = "Home Page";
-}
+ }
 
-<table class="table table-bordered">
-    <tr>
-        <th>Brand ID</th>
-        <th>Brand Name</th>
-    </tr>
 
-    @foreach (var brand in Model)
-    {
-        <tr>
-            <td>@brand.BrandID</td>
-            <td>@brand.BrandName</td>
-        </tr>
-    }
-</table>
+@Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
