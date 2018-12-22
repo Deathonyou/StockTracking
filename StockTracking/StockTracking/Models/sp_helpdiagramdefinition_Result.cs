@@ -10,16 +10,10 @@
 namespace StockTracking.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ProductRegister
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int RegisterID { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public Nullable<int> ProductID { get; set; }
-        public Nullable<int> Quantity { get; set; }
-    
-        public virtual Product Product { get; set; }
-        public virtual User User { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

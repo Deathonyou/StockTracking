@@ -12,14 +12,12 @@ namespace StockTracking.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductRegister
+    public partial class sysdiagram
     {
-        public int RegisterID { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public Nullable<int> ProductID { get; set; }
-        public Nullable<int> Quantity { get; set; }
-    
-        public virtual Product Product { get; set; }
-        public virtual User User { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

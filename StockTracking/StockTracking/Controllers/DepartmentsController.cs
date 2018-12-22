@@ -15,6 +15,7 @@ namespace StockTracking.Controllers
         private StockTrackingContext db = new StockTrackingContext();
 
         // GET: Departments
+        
         public ActionResult Index()
         {
             return View(db.Departments.ToList());

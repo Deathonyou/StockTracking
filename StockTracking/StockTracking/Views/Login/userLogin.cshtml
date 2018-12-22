@@ -1,0 +1,67 @@
+﻿@model StockTracking.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="~/Content/css/loginPage.css" rel="stylesheet" />
+    <!------ Include the above in your HEAD tag ---------->
+    <title>Login</title>
+</head>
+<body>
+    <div class="container" style="background-color:azure">
+        STOK TAKIP ICIN
+        @if (ViewBag.Error == 1)
+        {
+            <div style="text-align: center; margin: 0 auto; display: table;">
+                <div style="width: 250px; display: block; background: #d90a00; border-radius: 26px; color: #fff; text-align: center; padding: 10px 0; position: relative; top: 70px;">
+                    Kullanıcı Adı Veya Şifre Hatalı
+                </div>
+            </div>
+        }
+        <div id="login-row" class="row justify-content-center align-items-center">
+
+            <div id="login-column" class="col-md-6">
+
+                <div class="box">
+
+                    <div class="shape1"></div>
+                    <div class="shape2"></div>
+                    <div class="shape3"></div>
+                    <div class="shape4"></div>
+                    <div class="shape5"></div>
+                    <div class="shape6"></div>
+                    <div class="shape7"></div>
+                    <div class="float">
+                        @using (Html.BeginForm("userLogin", "Login", FormMethod.Post, new { @class = "form" }))
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(u => u.UserName, "Kullanıcı Adı", new { @class = "text white" })
+                                @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(u => u.UserPassword, "Şifre", new { @class = "text white" })
+                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control", placeholder = "Şifre" })
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-dark btn-md" value="Giriş Yap">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
