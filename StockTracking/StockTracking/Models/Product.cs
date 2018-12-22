@@ -11,9 +11,7 @@ namespace StockTracking.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,7 +28,6 @@ namespace StockTracking.Models
         public Nullable<int> BrandID { get; set; }
         public string AcceptDate { get; set; }
         public Nullable<decimal> ProductPrice { get; set; }
-        [DisplayName("Ürün Adedi")]
         public Nullable<int> ProductQuantity { get; set; }
         public Nullable<int> UserID { get; set; }
     

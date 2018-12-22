@@ -148,6 +148,12 @@
     <Compile Include="Models\ProductType.cs">
       <DependentUpon>StockTrackingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>StockTrackingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>StockTrackingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\StockTrackingModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -162,6 +168,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StockTrackingModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>StockTrackingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>StockTrackingModel.tt</DependentUpon>
@@ -283,12 +292,12 @@
     <Content Include="Views\ProductTypes\Details.cshtml" />
     <Content Include="Views\ProductTypes\Edit.cshtml" />
     <Content Include="Views\ProductTypes\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\ProductRegisters\Create.cshtml" />
     <Content Include="Views\ProductRegisters\Delete.cshtml" />
     <Content Include="Views\ProductRegisters\Details.cshtml" />
     <Content Include="Views\ProductRegisters\Edit.cshtml" />
     <Content Include="Views\ProductRegisters\Index.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

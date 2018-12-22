@@ -49,7 +49,7 @@ namespace StockTracking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RegisterID,UserID,ProductID")] ProductRegister productRegister)
+        public ActionResult Create([Bind(Include = "RegisterID,UserID,ProductID,Quantity")] ProductRegister productRegister)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace StockTracking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RegisterID,UserID,ProductID")] ProductRegister productRegister)
+        public ActionResult Edit([Bind(Include = "RegisterID,UserID,ProductID,Quantity")] ProductRegister productRegister)
         {
             if (ModelState.IsValid)
             {
