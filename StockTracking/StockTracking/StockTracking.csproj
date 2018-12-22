@@ -292,7 +292,6 @@
     <Content Include="Views\ProductTypes\Details.cshtml" />
     <Content Include="Views\ProductTypes\Edit.cshtml" />
     <Content Include="Views\ProductTypes\Index.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\ProductRegisters\Create.cshtml" />
     <Content Include="Views\ProductRegisters\Delete.cshtml" />
     <Content Include="Views\ProductRegisters\Details.cshtml" />

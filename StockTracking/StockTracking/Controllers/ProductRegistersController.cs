@@ -39,7 +39,7 @@ namespace StockTracking.Controllers
         // GET: ProductRegisters/Create
         public ActionResult Create()
         {
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName");
+            ViewBag.ProductID = new SelectList(db.Products.Where(p => p.ProductStockState == true), "ProductID", "ProductName");
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName");
             return View();
         }
@@ -95,19 +95,26 @@ namespace StockTracking.Controllers
             Product product = new Product();
             product = db.Products.Where(w => w.ProductID == productRegister.ProductID).FirstOrDefault();//güncellenecek ürün bulundu
             ProductRegister tempProductReg = db.ProductRegisters.Where(w => w.RegisterID == productRegister.RegisterID).FirstOrDefault();//ilk değeri lazım olduğu için işlemleri yapmak için temp e atadık.
+            int stokSayisiKontrol = Convert.ToInt32(product.ProductQuantity - (Math.Abs(Convert.ToInt32(productRegister.Quantity - tempProductReg.Quantity))));
 
-
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && stokSayisiKontrol >= 0)
             {
 
                 if (productRegister.Quantity < tempProductReg.Quantity) product.ProductQuantity += tempProductReg.Quantity - productRegister.Quantity;//daha düşük değere güncellendi iade var.
                 else if (tempProductReg.Quantity == productRegister.Quantity) product.ProductQuantity = product.ProductQuantity; // işlem yok.
                 else product.ProductQuantity -= productRegister.Quantity - tempProductReg.Quantity;//alım var stoktan düşüyoruz.
+                
+                db.Entry(product).State = EntityState.Modified;
 
+                if (product.ProductQuantity == 0)
+                {
+                    product.ProductStockState = false;
+                }
 
                 tempProductReg.Quantity = productRegister.Quantity;//işlemler bittiğinde tempin quantity değerini formdan gelen değere eşitledik.
                 db.Entry(tempProductReg).State = EntityState.Modified;
-                db.SaveChanges();
+                db.SaveChanges(); 
+             
                 return RedirectToAction("Index");
             }
             ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productRegister.ProductID);
