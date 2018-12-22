@@ -7,12 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StockTracking.Models;
+using StockTracking.Controllers;
 
 namespace StockTracking.Controllers
 {
     public class ProductRegistersController : Controller
     {
         private StockTrackingContext db = new StockTrackingContext();
+        
 
         // GET: ProductRegisters
         public ActionResult Index()
@@ -51,10 +53,13 @@ namespace StockTracking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RegisterID,UserID,ProductID,Quantity")] ProductRegister productRegister)
         {
-            if (ModelState.IsValid)
+            Product product = db.Products.Find(productRegister.ProductID);//product id si ile ürünü bulduk. ekleme işleminden sonra quantity kontrol işlemini yaptıracağız.
+            if (ModelState.IsValid && (product.ProductQuantity - productRegister.Quantity)>=0)//eğer miktar 0 veya üzeirndeyse işleme izin vermeyecek.
             {
-                db.ProductRegisters.Add(productRegister);
-                db.SaveChanges();
+                db.ProductRegisters.Add(productRegister); 
+                product.ProductQuantity = product.ProductQuantity - productRegister.Quantity;//quantity düşüyor. miktar kontrol edilip uuygunluğu kontrol edilecek.
+                db.Entry(product).State = EntityState.Modified;//değişiklik kaydı.
+                db.SaveChanges();//save change
                 return RedirectToAction("Index");
             }
 
@@ -66,6 +71,7 @@ namespace StockTracking.Controllers
         // GET: ProductRegisters/Edit/5
         public ActionResult Edit(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -87,6 +93,7 @@ namespace StockTracking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RegisterID,UserID,ProductID,Quantity")] ProductRegister productRegister)
         {
+           
             if (ModelState.IsValid)
             {
                 db.Entry(productRegister).State = EntityState.Modified;
