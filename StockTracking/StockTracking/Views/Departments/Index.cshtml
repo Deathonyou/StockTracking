@@ -6,13 +6,13 @@
 
   
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <h2>Departman Listesi</h2>
 
         <p>
             @Html.ActionLink("Yeni Departman Ekle", "Create", null, new { @class = "btn btn-primary" })
         </p>
-        <table class="table table-bordered table-striped">
+        <table class="table table-dark">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.DepartmentName)
@@ -27,8 +27,8 @@
                         @Html.DisplayFor(modelItem => item.DepartmentName)
                     </td>
                     <td>
-                        @Html.ActionLink("Güncelle", "Edit", new { id = item.DepartmentID }, new { @class = "btn btn-primary btn-sm" })
-                        @Html.ActionLink("Sil", "Delete", new { id = item.DepartmentID }, new { @class = "btn btn-danger btn-sm" })
+                        @Html.ActionLink("Güncelle", "Edit", new { id = item.DepartmentID }, new { @class = "btn btn-primary btn-sm", @Style = "Width:50%" })
+                        @Html.ActionLink("Sil", "Delete", new { id = item.DepartmentID }, new { @class = "btn btn-danger btn-sm", @Style = "Width:45%" })
                     </td>
                 </tr>
             }

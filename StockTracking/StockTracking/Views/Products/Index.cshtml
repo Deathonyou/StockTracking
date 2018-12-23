@@ -11,7 +11,7 @@
         <p>
             @Html.ActionLink("Yeni Ürün Ekle", "Create", null, new { @class = "btn btn-primary" })
         </p>
-        <table class="table table-bordered table-stripeds">
+        <table class="table table-dark">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.ProductName)
@@ -74,8 +74,8 @@
                         @Html.DisplayFor(modelItem => item.User.UserName)
                     </td>
                     <td>
-                        @Html.ActionLink("Güncelle", "Edit", new { id = item.ProductID }, new { @class = "btn btn-primary btn-sm" })
-                        @Html.ActionLink("Sil", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger btn-sm" })
+                        @Html.ActionLink("Güncelle", "Edit", new { id = item.ProductID }, new { @class = "btn btn-primary btn-sm mb-1", @Style = "Width:100%" })
+                        @Html.ActionLink("Sil", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger btn-sm", @Style = "Width:100%" })
                     </td>
                 </tr>
             }

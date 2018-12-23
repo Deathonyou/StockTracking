@@ -11,7 +11,8 @@ namespace StockTracking.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,16 +20,25 @@ namespace StockTracking.Models
         {
             this.ProductRegisters = new HashSet<ProductRegister>();
         }
-    
+        [DisplayName("Ürün ID")]
         public int ProductID { get; set; }
+        [DisplayName("Ürün Adý")]
         public string ProductName { get; set; }
+        [DisplayName("Ürün Açýklamasý")]
         public string ProductDescription { get; set; }
+        [DisplayName("Ürün Tip ID")]
         public Nullable<int> ProductTypeID { get; set; }
+        [DisplayName("Stok Durumu")]
         public Nullable<bool> ProductStockState { get; set; }
+        [DisplayName("Marka ID")]
         public Nullable<int> BrandID { get; set; }
+        [DisplayName("Ürün Kabul Tarihi")]
         public string AcceptDate { get; set; }
+        [DisplayName("Ürün Fiyatý")]
         public Nullable<decimal> ProductPrice { get; set; }
+        [DisplayName("Stok Adedi")]
         public Nullable<int> ProductQuantity { get; set; }
+        [DisplayName("Satýn Alan Kullanýcý")]
         public Nullable<int> UserID { get; set; }
     
         public virtual Brand Brand { get; set; }

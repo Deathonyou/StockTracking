@@ -11,7 +11,8 @@ namespace StockTracking.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +22,19 @@ namespace StockTracking.Models
             this.Products = new HashSet<Product>();
         }
     
+        [DisplayName("Kullanýcý ID")]
         public int UserID { get; set; }
+        [DisplayName("Kullanýcý Adý")]
         public string UserName { get; set; }
+        [DisplayName("Kullanýcý Soyadý")]
         public string UserSurname { get; set; }
+        [DisplayName("Rol ID")]
         public Nullable<int> RoleID { get; set; }
+        [DisplayName("Departman ID")]
         public Nullable<int> DepartmentID { get; set; }
+        [DisplayName("Kullanýcý Aktif Mi?")]
         public Nullable<bool> UserIsActive { get; set; }
+        [DisplayName("Þifre")]
         public string UserPassword { get; set; }
     
         public virtual Department Department { get; set; }

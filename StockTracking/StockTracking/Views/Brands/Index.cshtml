@@ -6,13 +6,13 @@
 
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <h2>Marka Listesi</h2>
 
         <p>
             @Html.ActionLink("Yeni Marka Ekle", "Create", null, new { @class = "btn btn-primary" })
         </p>
-        <table class="table table-bordered table-striped">
+        <table class="table table-dark">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.BrandName)
@@ -27,8 +27,8 @@
                         @Html.DisplayFor(modelItem => item.BrandName)
                     </td>
                     <td>
-                        @Html.ActionLink("Güncelle", "Edit", new { id = item.BrandID }, new { @class = "btn btn-primary btn-sm" })
-                        @Html.ActionLink("Sil", "Delete", new { id = item.BrandID }, new { @class = "btn btn-danger btn-sm" })
+                        @Html.ActionLink("Güncelle", "Edit", new { id = item.BrandID }, new { @class = "btn btn-primary btn-sm", @Style = "Width:50%" })
+                        @Html.ActionLink("Sil", "Delete", new { id = item.BrandID }, new { @class = "btn btn-danger btn-sm", @Style = "Width:45%" })
                     </td>
                 </tr>
             }
