@@ -6,15 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using StockTracking.Models;
-using StockTracking.Controllers;
-
+using StockTracking.Models; 
 namespace StockTracking.Controllers
 {
     public class ProductRegistersController : Controller
     {
         private StockTrackingContext db = new StockTrackingContext();
-        
+
 
         // GET: ProductRegisters
         public ActionResult Index()
@@ -41,7 +39,7 @@ namespace StockTracking.Controllers
         // GET: ProductRegisters/Create
         public ActionResult Create()
         {
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName");
+            ViewBag.ProductID = new SelectList(db.Products.Where(p => p.ProductStockState == true), "ProductID", "ProductName");
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName");
             return View();
         }
@@ -54,9 +52,9 @@ namespace StockTracking.Controllers
         public ActionResult Create([Bind(Include = "RegisterID,UserID,ProductID,Quantity")] ProductRegister productRegister)
         {
             Product product = db.Products.Find(productRegister.ProductID);//product id si ile ürünü bulduk. ekleme işleminden sonra quantity kontrol işlemini yaptıracağız.
-            if (ModelState.IsValid && (product.ProductQuantity - productRegister.Quantity)>=0)//eğer miktar 0 veya üzeirndeyse işleme izin vermeyecek.
+            if (ModelState.IsValid && (product.ProductQuantity - productRegister.Quantity) >= 0)//eğer miktar 0 veya üzeirndeyse işleme izin vermeyecek.
             {
-                db.ProductRegisters.Add(productRegister); 
+                db.ProductRegisters.Add(productRegister);
                 product.ProductQuantity = product.ProductQuantity - productRegister.Quantity;//quantity düşüyor. miktar kontrol edilip uuygunluğu kontrol edilecek.
                 db.Entry(product).State = EntityState.Modified;//değişiklik kaydı.
                 db.SaveChanges();//save change
@@ -77,6 +75,7 @@ namespace StockTracking.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ProductRegister productRegister = db.ProductRegisters.Find(id);
+
             if (productRegister == null)
             {
                 return HttpNotFound();
@@ -93,16 +92,47 @@ namespace StockTracking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RegisterID,UserID,ProductID,Quantity")] ProductRegister productRegister)
         {
-           
-            if (ModelState.IsValid)
+            Product product = new Product();
+            product = db.Products.Where(w => w.ProductID == productRegister.ProductID).FirstOrDefault();//güncellenecek ürün bulundu
+            ProductRegister tempProductReg = db.ProductRegisters.Where(w => w.RegisterID == productRegister.RegisterID).FirstOrDefault();//ilk değeri lazım olduğu için işlemleri yapmak için temp e atadık.
+
+            bool stockQuantityIsValidToUpdate;
+            if ((Convert.ToInt32(productRegister.Quantity) > Convert.ToInt32(tempProductReg.Quantity)) && Convert.ToInt32(product.ProductQuantity - (Math.Abs(Convert.ToInt32(productRegister.Quantity - tempProductReg.Quantity)))) >= 0)
+                stockQuantityIsValidToUpdate = true;
+            else if ((Convert.ToInt32(productRegister.Quantity) < Convert.ToInt32(tempProductReg.Quantity)))
+                stockQuantityIsValidToUpdate = true;
+            else
+                stockQuantityIsValidToUpdate = false;
+            //Burada güncellenen miktar eğer önceki miktardan büyükse ve stok bunu karşılıyorsa true 
+            //girilen miktar daha düşükse stokun önemi yok true 
+            //şartlar karşılanmıyorsa false
+
+
+            if (ModelState.IsValid && stockQuantityIsValidToUpdate ==true)
             {
-                db.Entry(productRegister).State = EntityState.Modified;
-                db.SaveChanges();
+
+                if (productRegister.Quantity < tempProductReg.Quantity) product.ProductQuantity += tempProductReg.Quantity - productRegister.Quantity;//daha düşük değere güncellendi iade var.
+                else if (tempProductReg.Quantity == productRegister.Quantity) product.ProductQuantity = product.ProductQuantity; // işlem yok.
+                else product.ProductQuantity -= productRegister.Quantity - tempProductReg.Quantity;//alım var stoktan düşüyoruz.
+                
+                db.Entry(product).State = EntityState.Modified;
+
+                if (product.ProductQuantity == 0)
+                {
+                    product.ProductStockState = false;
+                }
+                else product.ProductStockState = true;
+
+                tempProductReg.Quantity = productRegister.Quantity;//işlemler bittiğinde tempin quantity değerini formdan gelen değere eşitledik.
+                db.Entry(tempProductReg).State = EntityState.Modified;
+                db.SaveChanges(); 
+             
                 return RedirectToAction("Index");
             }
             ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productRegister.ProductID);
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productRegister.UserID);
             return View(productRegister);
+
         }
 
         // GET: ProductRegisters/Delete/5
@@ -126,6 +156,8 @@ namespace StockTracking.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ProductRegister productRegister = db.ProductRegisters.Find(id);
+            Product product = db.Products.Find(productRegister.ProductID);
+            product.ProductQuantity += productRegister.Quantity;
             db.ProductRegisters.Remove(productRegister);
             db.SaveChanges();
             return RedirectToAction("Index");

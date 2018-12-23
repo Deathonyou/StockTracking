@@ -11,7 +11,8 @@ namespace StockTracking.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class ProductType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +20,9 @@ namespace StockTracking.Models
         {
             this.Products = new HashSet<Product>();
         }
-    
+        [DisplayName("Ürün Tip ID")]
         public int ProductTypeID { get; set; }
+        [DisplayName("Ürün Tip Adý")]
         public string ProductName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

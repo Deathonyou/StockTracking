@@ -11,12 +11,17 @@ namespace StockTracking.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class ProductRegister
     {
+        [DisplayName("Zimmet ID")]
         public int RegisterID { get; set; }
+        [DisplayName("Kullanýcý ID")]
         public Nullable<int> UserID { get; set; }
+        [DisplayName("Ürün ID")]
         public Nullable<int> ProductID { get; set; }
+        [DisplayName("Zimmetlenen Ürün Sayýsý")]
         public Nullable<int> Quantity { get; set; }
     
         public virtual Product Product { get; set; }
