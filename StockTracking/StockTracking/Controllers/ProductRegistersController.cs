@@ -95,9 +95,20 @@ namespace StockTracking.Controllers
             Product product = new Product();
             product = db.Products.Where(w => w.ProductID == productRegister.ProductID).FirstOrDefault();//güncellenecek ürün bulundu
             ProductRegister tempProductReg = db.ProductRegisters.Where(w => w.RegisterID == productRegister.RegisterID).FirstOrDefault();//ilk değeri lazım olduğu için işlemleri yapmak için temp e atadık.
-            int stokSayisiKontrol = Convert.ToInt32(product.ProductQuantity - (Math.Abs(Convert.ToInt32(productRegister.Quantity - tempProductReg.Quantity))));
 
-            if (ModelState.IsValid && stokSayisiKontrol >= 0)
+            bool stockQuantityIsValidToUpdate;
+            if ((Convert.ToInt32(productRegister.Quantity) > Convert.ToInt32(tempProductReg.Quantity)) && Convert.ToInt32(product.ProductQuantity - (Math.Abs(Convert.ToInt32(productRegister.Quantity - tempProductReg.Quantity)))) >= 0)
+                stockQuantityIsValidToUpdate = true;
+            else if ((Convert.ToInt32(productRegister.Quantity) < Convert.ToInt32(tempProductReg.Quantity)))
+                stockQuantityIsValidToUpdate = true;
+            else
+                stockQuantityIsValidToUpdate = false;
+            //Burada güncellenen miktar eğer önceki miktardan büyükse ve stok bunu karşılıyorsa true 
+            //girilen miktar daha düşükse stokun önemi yok true 
+            //şartlar karşılanmıyorsa false
+
+
+            if (ModelState.IsValid && stockQuantityIsValidToUpdate ==true)
             {
 
                 if (productRegister.Quantity < tempProductReg.Quantity) product.ProductQuantity += tempProductReg.Quantity - productRegister.Quantity;//daha düşük değere güncellendi iade var.
@@ -110,6 +121,7 @@ namespace StockTracking.Controllers
                 {
                     product.ProductStockState = false;
                 }
+                else product.ProductStockState = true;
 
                 tempProductReg.Quantity = productRegister.Quantity;//işlemler bittiğinde tempin quantity değerini formdan gelen değere eşitledik.
                 db.Entry(tempProductReg).State = EntityState.Modified;
