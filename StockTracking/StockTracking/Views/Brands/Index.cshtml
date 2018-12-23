@@ -4,35 +4,37 @@
     ViewBag.Title = "Index";
 }
 
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Marka Listesi</h2>
-
-        <p>
-            @Html.ActionLink("Yeni Marka Ekle", "Create", null, new { @class = "btn btn-primary" })
-        </p>
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.BrandName)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BrandName)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Güncelle", "Edit", new { id = item.BrandID }, new { @class = "btn btn-primary btn-sm" })
-                        @Html.ActionLink("Sil", "Delete", new { id = item.BrandID }, new { @class = "btn btn-danger btn-sm" })
-                    </td>
-                </tr>
-            }
-
-        </table>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="margin-left:4px">Brand List</h4>
+            <p>
+                @Html.ActionLink("Add New Brand", "Create", null, new { @class = "btn btn-primary" })
+            </p>
+            <table id="BrandList" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Brand Name
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BrandName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Update", "Edit", new { id = item.BrandID }, new { @class = "btn btn-primary btn-sm" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.BrandID }, new { @class = "btn btn-danger btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
