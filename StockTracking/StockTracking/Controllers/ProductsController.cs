@@ -52,7 +52,11 @@ namespace StockTracking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductID,ProductName,ProductDescription,ProductTypeID,ProductStockState,BrandID,AcceptDate,ProductPrice,ProductQuantity,UserID")] Product product)
         {
-            if (ModelState.IsValid)
+            
+            if (product.ProductQuantity==0)
+                product.ProductStockState = false;
+            
+            if (ModelState.IsValid && !(product.ProductQuantity<0))
             {
                 db.Products.Add(product);
                 db.SaveChanges();
@@ -90,7 +94,10 @@ namespace StockTracking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductID,ProductName,ProductDescription,ProductTypeID,ProductStockState,BrandID,AcceptDate,ProductPrice,ProductQuantity,UserID")] Product product)
         {
-            if (ModelState.IsValid)
+            if (product.ProductQuantity == 0)
+                product.ProductStockState = false;
+
+            if (ModelState.IsValid && !(product.ProductQuantity<0))
             {
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();

@@ -12,6 +12,7 @@ namespace StockTracking.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class Product
     {
@@ -36,6 +37,7 @@ namespace StockTracking.Models
         public string AcceptDate { get; set; }
         [DisplayName("Ürün Fiyatý")]
         public Nullable<decimal> ProductPrice { get; set; }
+        [DefaultValue(0)]
         [DisplayName("Stok Adedi")]
         public Nullable<int> ProductQuantity { get; set; }
         [DisplayName("Satýn Alan Kullanýcý")]
