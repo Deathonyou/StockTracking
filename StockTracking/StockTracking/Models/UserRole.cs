@@ -21,6 +21,8 @@ namespace StockTracking.Models
         }
     
         public int UserRoleID { get; set; }
+        [Display(Name ="User Role")]
+        [Required(ErrorMessage = "Role is required.")]
         public string UserRoleName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

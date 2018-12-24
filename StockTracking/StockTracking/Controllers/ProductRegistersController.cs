@@ -71,6 +71,8 @@ namespace StockTracking.Controllers
         public ActionResult Create([Bind(Include = "RegisterID,UserID,ProductID,Quantity")] ProductRegister productRegister)
         {
             Product product = db.Products.Find(productRegister.ProductID);//product id si ile ürünü bulduk. ekleme işleminden sonra quantity kontrol işlemini yaptıracağız.
+            if (product.ProductQuantity - productRegister.Quantity == 0) product.ProductStockState = false;// ürün adedi 0 a düştüyse durumu false yap
+          
             if (ModelState.IsValid && (product.ProductQuantity - productRegister.Quantity) >= 0)//eğer miktar 0 veya üzeirndeyse işleme izin vermeyecek.
             {
                 db.ProductRegisters.Add(productRegister);
