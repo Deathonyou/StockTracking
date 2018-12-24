@@ -12,16 +12,20 @@ namespace StockTracking.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class ProductRegister
     {
         [DisplayName("Register ID")]
         public int RegisterID { get; set; }
         [DisplayName("User ID")]
+        [Required(ErrorMessage = "User is required.")]
         public Nullable<int> UserID { get; set; }
         [DisplayName("Product ID")]
+        [Required(ErrorMessage = "Product is required.")]
         public Nullable<int> ProductID { get; set; }
         [DisplayName("Registred Product Count")]
+        [Required(ErrorMessage = "Quantity is required.")]
         public Nullable<int> Quantity { get; set; }
     
         public virtual Product Product { get; set; }

@@ -12,6 +12,7 @@ namespace StockTracking.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class ProductType
     {
@@ -23,6 +24,7 @@ namespace StockTracking.Models
         [DisplayName("Product Type ID")]
         public int ProductTypeID { get; set; }
         [DisplayName("Product Type")]
+        [Required(ErrorMessage = "Product Type is required.")]
         public string ProductName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

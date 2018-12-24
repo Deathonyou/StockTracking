@@ -12,6 +12,7 @@ namespace StockTracking.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class Department
     {
@@ -22,6 +23,7 @@ namespace StockTracking.Models
         }
         [DisplayName("Department ID")]
         public int DepartmentID { get; set; }
+        [Required(ErrorMessage = "Department Name is required.")]
         [DisplayName("Department Name")]
         public string DepartmentName { get; set; }
     

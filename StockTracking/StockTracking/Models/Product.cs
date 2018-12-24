@@ -24,22 +24,30 @@ namespace StockTracking.Models
         [DisplayName("Product ID")]
         public int ProductID { get; set; }
         [DisplayName("Product Name")]
+        [Required(ErrorMessage = "Product Name is required.")]
         public string ProductName { get; set; }
         [DisplayName("Product Description")]
+        [Required(ErrorMessage = "Product Description is required.")]
         public string ProductDescription { get; set; }
         [DisplayName("Product Type")]
+        [Required(ErrorMessage = "Product Type is required.")]
         public Nullable<int> ProductTypeID { get; set; }
         [DisplayName("Stock State")]
+        [Required(ErrorMessage = "Product State is required.")]
         public Nullable<bool> ProductStockState { get; set; }
         [DisplayName("Brand ID")]
+        [Required(ErrorMessage = "Brand is required.")]
         public Nullable<int> BrandID { get; set; }
         [DisplayName("Accept Date")]
+        [Required(ErrorMessage = "AcceptDate is required.")]
         public string AcceptDate { get; set; }
         [DisplayName("Price")]
+        [Required(ErrorMessage = "Price is required.")]
         public Nullable<decimal> ProductPrice { get; set; }
-        [DefaultValue(0)]
         [DisplayName("Quantity")]
+        [Required(ErrorMessage = "Quantity is required.")]
         public Nullable<int> ProductQuantity { get; set; }
+        [Required(ErrorMessage = "User is required.")]
         public Nullable<int> UserID { get; set; }
     
         public virtual Brand Brand { get; set; }

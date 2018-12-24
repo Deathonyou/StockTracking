@@ -12,6 +12,7 @@ namespace StockTracking.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class User
     {
@@ -25,16 +26,22 @@ namespace StockTracking.Models
         [DisplayName("User ID")]
         public int UserID { get; set; }
         [DisplayName("User Name")]
+        [Required(ErrorMessage = "User Name is required.")]
         public string UserName { get; set; }
         [DisplayName("User Surname")]
+        [Required(ErrorMessage = "Product Name is required.")]
         public string UserSurname { get; set; }
         [DisplayName("Role ID")]
+        [Required(ErrorMessage = "User Role is required.")]
         public Nullable<int> RoleID { get; set; }
         [DisplayName("Department ID")]
+        [Required(ErrorMessage = "Department Name is required.")]
         public Nullable<int> DepartmentID { get; set; }
         [DisplayName("User Is Active")]
+        [Required(ErrorMessage = "User Status is required.")]
         public Nullable<bool> UserIsActive { get; set; }
         [DisplayName("Password")]
+        [Required(ErrorMessage = "User Password is required.")]
         public string UserPassword { get; set; }
     
         public virtual Department Department { get; set; }
