@@ -20,9 +20,9 @@ namespace StockTracking.Models
         {
             this.Users = new HashSet<User>();
         }
-        [DisplayName("Departman ID")]
+        [DisplayName("Department ID")]
         public int DepartmentID { get; set; }
-        [DisplayName("Departman Adý")]
+        [DisplayName("Department Name")]
         public string DepartmentName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

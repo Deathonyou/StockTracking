@@ -20,9 +20,9 @@ namespace StockTracking.Models
         {
             this.Products = new HashSet<Product>();
         }
-        [DisplayName("Ürün Tip ID")]
+        [DisplayName("Product Type ID")]
         public int ProductTypeID { get; set; }
-        [DisplayName("Ürün Tip Adý")]
+        [DisplayName("Product Type")]
         public string ProductName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

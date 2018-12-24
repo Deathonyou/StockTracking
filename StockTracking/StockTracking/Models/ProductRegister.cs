@@ -15,13 +15,13 @@ namespace StockTracking.Models
 
     public partial class ProductRegister
     {
-        [DisplayName("Zimmet ID")]
+        [DisplayName("Register ID")]
         public int RegisterID { get; set; }
-        [DisplayName("Kullanýcý ID")]
+        [DisplayName("User ID")]
         public Nullable<int> UserID { get; set; }
-        [DisplayName("Ürün ID")]
+        [DisplayName("Product ID")]
         public Nullable<int> ProductID { get; set; }
-        [DisplayName("Zimmetlenen Ürün Sayýsý")]
+        [DisplayName("Registred Product Count")]
         public Nullable<int> Quantity { get; set; }
     
         public virtual Product Product { get; set; }

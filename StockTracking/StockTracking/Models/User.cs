@@ -22,19 +22,19 @@ namespace StockTracking.Models
             this.Products = new HashSet<Product>();
         }
     
-        [DisplayName("Kullanýcý ID")]
+        [DisplayName("User ID")]
         public int UserID { get; set; }
-        [DisplayName("Kullanýcý Adý")]
+        [DisplayName("User Name")]
         public string UserName { get; set; }
-        [DisplayName("Kullanýcý Soyadý")]
+        [DisplayName("User Surname")]
         public string UserSurname { get; set; }
-        [DisplayName("Rol ID")]
+        [DisplayName("Role ID")]
         public Nullable<int> RoleID { get; set; }
-        [DisplayName("Departman ID")]
+        [DisplayName("Department ID")]
         public Nullable<int> DepartmentID { get; set; }
-        [DisplayName("Kullanýcý Aktif Mi?")]
+        [DisplayName("User Is Active")]
         public Nullable<bool> UserIsActive { get; set; }
-        [DisplayName("Þifre")]
+        [DisplayName("Password")]
         public string UserPassword { get; set; }
     
         public virtual Department Department { get; set; }

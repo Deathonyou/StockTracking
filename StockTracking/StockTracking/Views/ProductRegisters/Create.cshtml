@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h3 style="text-align:center">Create</h3>
 
 <div class="row">
     <div class="col-md-5">
@@ -17,7 +17,7 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.UserID, "UserID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.UserID, "User Name")
                     <div class="col-md-10">
                         @Html.DropDownList("UserID", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
@@ -25,14 +25,14 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ProductID, "ProductID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.ProductID, "Product Name")
                     <div class="col-md-10">
                         @Html.DropDownList("ProductID", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Quantity,"Registered Product Count")
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Create" class="btn btn-default" />
-                        @Html.ActionLink("Zimmet Listesi", "Index", null, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Register List", "Index", null, new { @class = "btn btn-warning" })
                     </div>
                 </div>
             </div>

@@ -21,26 +21,25 @@ namespace StockTracking.Models
         {
             this.ProductRegisters = new HashSet<ProductRegister>();
         }
-        [DisplayName("Ürün ID")]
+        [DisplayName("Product ID")]
         public int ProductID { get; set; }
-        [DisplayName("Ürün Adý")]
+        [DisplayName("Product Name")]
         public string ProductName { get; set; }
-        [DisplayName("Ürün Açýklamasý")]
+        [DisplayName("Product Description")]
         public string ProductDescription { get; set; }
-        [DisplayName("Ürün Tip ID")]
+        [DisplayName("Product Type")]
         public Nullable<int> ProductTypeID { get; set; }
-        [DisplayName("Stok Durumu")]
+        [DisplayName("Stock State")]
         public Nullable<bool> ProductStockState { get; set; }
-        [DisplayName("Marka ID")]
+        [DisplayName("Brand ID")]
         public Nullable<int> BrandID { get; set; }
-        [DisplayName("Ürün Kabul Tarihi")]
+        [DisplayName("Accept Date")]
         public string AcceptDate { get; set; }
-        [DisplayName("Ürün Fiyatý")]
+        [DisplayName("Price")]
         public Nullable<decimal> ProductPrice { get; set; }
         [DefaultValue(0)]
-        [DisplayName("Stok Adedi")]
+        [DisplayName("Quantity")]
         public Nullable<int> ProductQuantity { get; set; }
-        [DisplayName("Satýn Alan Kullanýcý")]
         public Nullable<int> UserID { get; set; }
     
         public virtual Brand Brand { get; set; }
