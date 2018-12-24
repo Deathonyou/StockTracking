@@ -17,11 +17,28 @@ namespace StockTracking.Controllers
         // GET: ProductRegisters
         public ActionResult Index()
         {
-            var productRegisters = db.ProductRegisters.Include(p => p.Product).Include(p => p.User);
-            return View(productRegisters.ToList());
+            if (User.IsInRole("admin") || User.IsInRole("staff"))
+            {
+                var productRegisters = db.ProductRegisters.Include(p => p.Product).Include(p => p.User);
+                return View(productRegisters.ToList());
+
+            }
+            else
+            {
+                var DepartmentID = db.Users.Where(u => u.UserName == User.Identity.Name).Select(d => d.DepartmentID).FirstOrDefault();
+
+                var productRegistersSpec = db.ProductRegisters
+                    .Include(p => p.Product)
+                    .Include(p => p.User)
+                    .Where(u=>u.User.DepartmentID == DepartmentID);
+                return View(productRegistersSpec.ToList());
+            }
+           
+            
         }
 
         // GET: ProductRegisters/Details/5
+        [Authorize(Roles ="admin,staff")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +54,7 @@ namespace StockTracking.Controllers
         }
 
         // GET: ProductRegisters/Create
+        [Authorize(Roles ="admin")]
         public ActionResult Create()
         {
             ViewBag.ProductID = new SelectList(db.Products.Where(p => p.ProductStockState == true), "ProductID", "ProductName");
@@ -49,6 +67,7 @@ namespace StockTracking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "RegisterID,UserID,ProductID,Quantity")] ProductRegister productRegister)
         {
             Product product = db.Products.Find(productRegister.ProductID);//product id si ile ürünü bulduk. ekleme işleminden sonra quantity kontrol işlemini yaptıracağız.
@@ -67,6 +86,7 @@ namespace StockTracking.Controllers
         }
 
         // GET: ProductRegisters/Edit/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Edit(int? id)
         {
 
@@ -90,6 +110,7 @@ namespace StockTracking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Edit([Bind(Include = "RegisterID,UserID,ProductID,Quantity")] ProductRegister productRegister)
         {
             Product product = new Product();
@@ -136,6 +157,7 @@ namespace StockTracking.Controllers
         }
 
         // GET: ProductRegisters/Delete/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -153,6 +175,7 @@ namespace StockTracking.Controllers
         // POST: ProductRegisters/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,staff")]
         public ActionResult DeleteConfirmed(int id)
         {
             ProductRegister productRegister = db.ProductRegisters.Find(id);

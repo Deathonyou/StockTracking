@@ -11,8 +11,7 @@ namespace StockTracking.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class Department
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,9 +19,8 @@ namespace StockTracking.Models
         {
             this.Users = new HashSet<User>();
         }
-        [DisplayName("Department ID")]
+    
         public int DepartmentID { get; set; }
-        [DisplayName("Department Name")]
         public string DepartmentName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

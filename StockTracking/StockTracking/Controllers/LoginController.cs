@@ -31,7 +31,7 @@ namespace StockTracking.Controllers
                 if (model != null)
                 {
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
-                    return RedirectToAction("Index", "Departments");
+                    return RedirectToAction("Index","Auth");
                 }
                 else
                 {
@@ -39,6 +39,12 @@ namespace StockTracking.Controllers
                     return View();
                 }
             }
+        }
+
+        public ActionResult userLogout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("userLogin");
         }
     }
 }

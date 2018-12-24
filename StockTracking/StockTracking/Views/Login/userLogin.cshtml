@@ -17,12 +17,11 @@
 </head>
 <body>
     <div class="container" style="background-color:azure">
-        STOK TAKIP ICIN
         @if (ViewBag.Error == 1)
         {
             <div style="text-align: center; margin: 0 auto; display: table;">
                 <div style="width: 250px; display: block; background: #d90a00; border-radius: 26px; color: #fff; text-align: center; padding: 10px 0; position: relative; top: 70px;">
-                    Kullanıcı Adı Veya Şifre Hatalı
+                    Username Or Password Is Wrong
                 </div>
             </div>
         }
@@ -43,15 +42,15 @@
                         @using (Html.BeginForm("userLogin", "Login", FormMethod.Post, new { @class = "form" }))
                         {
                             <div class="form-group">
-                                @Html.LabelFor(u => u.UserName, "Kullanıcı Adı", new { @class = "text white" })
-                                @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı" })
+                                @Html.LabelFor(u => u.UserName, "User Name", new { @class = "text white" })
+                                @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", placeholder = "User Name" })
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(u => u.UserPassword, "Şifre", new { @class = "text white" })
-                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control", placeholder = "Şifre" })
+                                @Html.LabelFor(u => u.UserPassword, "Password", new { @class = "text white" })
+                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control", placeholder = "Password" })
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-dark btn-md" value="Giriş Yap">
+                                <input type="submit" name="submit" class="btn btn-dark btn-md" value="Login">
                             </div>
                         }
                     </div>

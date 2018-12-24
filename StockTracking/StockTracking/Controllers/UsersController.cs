@@ -10,7 +10,6 @@ using StockTracking.Models;
 
 namespace StockTracking.Controllers
 {
-    
     public class UsersController : Controller
     {
         private StockTrackingContext db = new StockTrackingContext();
@@ -30,8 +29,6 @@ namespace StockTracking.Controllers
                 var UserSpecTeam = db.Users.Where(u => u.DepartmentID == (userDepartmentID.ToList().FirstOrDefault()));
                 return View(UserSpecTeam.ToList());
             }
-           
-          
         }
 
         // GET: Users/Details/5
@@ -79,6 +76,7 @@ namespace StockTracking.Controllers
         }
 
         // GET: Users/Edit/5
+        [Authorize(Roles ="admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +97,7 @@ namespace StockTracking.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserID,UserName,UserSurname,RoleID,DepartmentID,UserIsActive,UserPassword")] User user)
         {
@@ -114,6 +113,7 @@ namespace StockTracking.Controllers
         }
 
         // GET: Users/Delete/5
+        [Authorize(Roles ="admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -130,6 +130,7 @@ namespace StockTracking.Controllers
 
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles ="admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

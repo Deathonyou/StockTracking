@@ -10,6 +10,7 @@ using StockTracking.Models;
 
 namespace StockTracking.Controllers
 {
+    [Authorize(Roles = "admin,staff")]
     public class ProductsController : Controller
     {
         private StockTrackingContext db = new StockTrackingContext();

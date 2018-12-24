@@ -11,9 +11,7 @@ namespace StockTracking.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,24 +19,15 @@ namespace StockTracking.Models
         {
             this.ProductRegisters = new HashSet<ProductRegister>();
         }
-        [DisplayName("Product ID")]
+    
         public int ProductID { get; set; }
-        [DisplayName("Product Name")]
         public string ProductName { get; set; }
-        [DisplayName("Product Description")]
         public string ProductDescription { get; set; }
-        [DisplayName("Product Type")]
         public Nullable<int> ProductTypeID { get; set; }
-        [DisplayName("Stock State")]
         public Nullable<bool> ProductStockState { get; set; }
-        [DisplayName("Brand ID")]
         public Nullable<int> BrandID { get; set; }
-        [DisplayName("Accept Date")]
         public string AcceptDate { get; set; }
-        [DisplayName("Price")]
         public Nullable<decimal> ProductPrice { get; set; }
-        [DefaultValue(0)]
-        [DisplayName("Quantity")]
         public Nullable<int> ProductQuantity { get; set; }
         public Nullable<int> UserID { get; set; }
     

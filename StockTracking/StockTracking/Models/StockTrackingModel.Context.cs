@@ -138,5 +138,14 @@ namespace StockTracking.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<sp_ProductRegisterWithDepartmentID_Result> sp_ProductRegisterWithDepartmentID(Nullable<int> p_DepartmentID)
+        {
+            var p_DepartmentIDParameter = p_DepartmentID.HasValue ?
+                new ObjectParameter("p_DepartmentID", p_DepartmentID) :
+                new ObjectParameter("p_DepartmentID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ProductRegisterWithDepartmentID_Result>("sp_ProductRegisterWithDepartmentID", p_DepartmentIDParameter);
+        }
     }
 }

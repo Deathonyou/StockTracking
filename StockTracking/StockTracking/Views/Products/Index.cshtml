@@ -75,8 +75,8 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.User.UserName)
                             </td>
-                            <td>
-                                @Html.ActionLink("Update", "Edit", new { id = item.ProductID }, new { @class = "btn btn-primary btn-sm" })
+                            <td style="text-align:center">
+                                @Html.ActionLink("Update", "Edit", new { id = item.ProductID }, new { @class = "btn btn-primary btn-sm mb-1" })
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger btn-sm deletebtn" })
                             </td>
                         </tr>
@@ -85,4 +85,3 @@
             </table>
         </div>
     </div>
-

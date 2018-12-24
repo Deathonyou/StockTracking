@@ -124,6 +124,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -153,6 +154,9 @@
       <DependentUpon>StockTrackingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>StockTrackingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_ProductRegisterWithDepartmentID_Result.cs">
       <DependentUpon>StockTrackingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StockTrackingModel.Context.cs">
@@ -306,6 +310,7 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Auth\Welcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

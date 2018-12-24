@@ -11,7 +11,7 @@
             <h3 style="text-align:center">User List</h3>
             @if (User.IsInRole("admin"))
             {
-            <p>@Html.ActionLink("Add New User", "Create", null, new { @class = "btn btn-primary" })</p>
+                <p>@Html.ActionLink("Add New User", "Create", null, new { @class = "btn btn-primary" })</p>
             }
             <table id="UserList" class="table table-striped table-bordered" style="width:100%">
                 <thead>
@@ -25,16 +25,23 @@
                         <th>
                             @Html.DisplayNameFor(model => model.UserIsActive)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.UserPassword)
-                        </th>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserPassword)
+                            </th>
+                        }
+
                         <th>
                             @Html.DisplayNameFor(model => model.Department.DepartmentName)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.UserRole.UserRoleName)
                         </th>
-                        <th></th>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <th></th>
+                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -50,19 +57,26 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.UserIsActive)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UserPassword)
-                            </td>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserPassword)
+                                </td>
+                            }
                             <td>
                                 @Html.DisplayFor(modelItem => item.Department.DepartmentName)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.UserRole.UserRoleName)
                             </td>
-                            <td>
-                                @Html.ActionLink("Update", "Edit", new { id = item.UserID }, new { @class = "btn btn-primary btn-sm" })
-                                @Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { @class = "btn btn-danger btn-sm" })
-                            </td>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <td>
+                                    @Html.ActionLink("Update", "Edit", new { id = item.UserID }, new { @class = "btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { @class = "btn btn-danger btn-sm" })
+                                </td>
+                            }
+
                         </tr>
                     }
                 </tbody>

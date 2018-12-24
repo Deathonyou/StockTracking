@@ -453,6 +453,9 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_ProductRegisterWithDepartmentID" ReturnType="Collection(StockTrackingModel.sp_ProductRegisterWithDepartmentID_Result)">
+            <Parameter Name="p_DepartmentID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="FK_Products_Users">
           <End Type="StockTrackingModel.User" Role="User" Multiplicity="0..1" />
@@ -486,6 +489,19 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_ProductRegisterWithDepartmentID_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserPassword" Nullable="true" MaxLength="36" />
+          <Property Type="String" Name="UserSurname" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="RoleID" Nullable="true" />
+          <Property Type="Int32" Name="DepartmentID" Nullable="true" />
+          <Property Type="Boolean" Name="UserIsActive" Nullable="true" />
+          <Property Type="Int32" Name="RegisterID" Nullable="false" />
+          <Property Type="Int32" Name="UserID1" Nullable="true" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
