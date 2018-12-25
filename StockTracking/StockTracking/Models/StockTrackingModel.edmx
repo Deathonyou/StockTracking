@@ -33,9 +33,8 @@
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="250" />
           <Property Name="ProductTypeID" Type="int" />
-          <Property Name="ProductDescription" Type="nvarchar" MaxLength="100" />
           <Property Name="ProductStockState" Type="bit" />
           <Property Name="AcceptDate" Type="nvarchar" MaxLength="16" />
           <Property Name="ProductPrice" Type="money" />
@@ -73,8 +72,8 @@
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserPassword" Type="nvarchar" MaxLength="36" />
           <Property Name="UserSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="35" />
           <Property Name="RoleID" Type="int" />
           <Property Name="DepartmentID" Type="int" />
           <Property Name="UserIsActive" Type="bit" />
@@ -268,8 +267,7 @@
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProductDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ProductTypeID" Type="Int32" />
           <Property Name="ProductStockState" Type="Boolean" />
           <Property Name="BrandID" Type="Int32" />
@@ -312,7 +310,7 @@
           <NavigationProperty Name="ProductRegisters" Relationship="Self.FK__ProductRe__UserI__4AB81AF0" FromRole="Users" ToRole="ProductRegister" />
           <NavigationProperty Name="UserRole" Relationship="Self.FK__Users__RoleID__3D5E1FD2" FromRole="Users" ToRole="UserRoles" />
           <NavigationProperty Name="Products" Relationship="StockTrackingModel.FK_Products_Users" FromRole="User" ToRole="Product" />
-          <Property Name="UserPassword" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Products__BrandI__47DBAE45">
           <End Role="Brands" Type="Self.Brand" Multiplicity="0..1" />
@@ -544,7 +542,6 @@
                 <ScalarProperty Name="AcceptDate" ColumnName="AcceptDate" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
                 <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
                 <ScalarProperty Name="ProductStockState" ColumnName="ProductStockState" />
                 <ScalarProperty Name="BrandID" ColumnName="BrandID" />

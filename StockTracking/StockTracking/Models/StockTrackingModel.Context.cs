@@ -34,7 +34,6 @@ namespace StockTracking.Models
         public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -139,13 +138,6 @@ namespace StockTracking.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
-        public virtual ObjectResult<sp_ProductRegisterWithDepartmentID_Result> sp_ProductRegisterWithDepartmentID(Nullable<int> p_DepartmentID)
-        {
-            var p_DepartmentIDParameter = p_DepartmentID.HasValue ?
-                new ObjectParameter("p_DepartmentID", p_DepartmentID) :
-                new ObjectParameter("p_DepartmentID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ProductRegisterWithDepartmentID_Result>("sp_ProductRegisterWithDepartmentID", p_DepartmentIDParameter);
-        }
+      
     }
 }
