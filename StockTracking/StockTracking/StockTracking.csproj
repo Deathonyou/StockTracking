@@ -135,6 +135,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Models\Brand.cs">
       <DependentUpon>StockTrackingModel.tt</DependentUpon>
     </Compile>
@@ -156,6 +157,9 @@
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>StockTrackingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_ProductRegisterWithDepartmentID_Result.cs">
+      <DependentUpon>StockTrackingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\StockTrackingModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -170,6 +174,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StockTrackingModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>StockTrackingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>StockTrackingModel.tt</DependentUpon>

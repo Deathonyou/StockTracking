@@ -73,7 +73,7 @@
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="UserSurname" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserPassword" Type="nvarchar" MaxLength="35" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="260" />
           <Property Name="RoleID" Type="int" />
           <Property Name="DepartmentID" Type="int" />
           <Property Name="UserIsActive" Type="bit" />
@@ -310,7 +310,7 @@
           <NavigationProperty Name="ProductRegisters" Relationship="Self.FK__ProductRe__UserI__4AB81AF0" FromRole="Users" ToRole="ProductRegister" />
           <NavigationProperty Name="UserRole" Relationship="Self.FK__Users__RoleID__3D5E1FD2" FromRole="Users" ToRole="UserRoles" />
           <NavigationProperty Name="Products" Relationship="StockTrackingModel.FK_Products_Users" FromRole="User" ToRole="Product" />
-          <Property Name="UserPassword" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Products__BrandI__47DBAE45">
           <End Role="Brands" Type="Self.Brand" Multiplicity="0..1" />

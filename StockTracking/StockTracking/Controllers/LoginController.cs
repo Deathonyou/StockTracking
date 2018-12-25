@@ -27,7 +27,9 @@ namespace StockTracking.Controllers
             //Temp Use MD5
             using (var context = new StockTrackingContext())
             {
-                var model = context.Users.FirstOrDefault(u => u.UserName == user.UserName && u.UserPassword == user.UserPassword);
+                var MD5Password = Helper.Encoder(user.UserPassword);
+                var model = context.Users
+                    .FirstOrDefault(u => u.UserName == user.UserName && u.UserPassword == MD5Password );
                 if (model != null)
                 {
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
