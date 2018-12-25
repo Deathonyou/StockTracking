@@ -51,7 +51,7 @@ namespace StockTracking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductName,ProductDescription,ProductTypeID,ProductStockState,BrandID,AcceptDate,ProductPrice,ProductQuantity,UserID")] Product product)
+        public ActionResult Create([Bind(Include = "ProductID,ProductName,ProductTypeID,ProductStockState,BrandID,AcceptDate,ProductPrice,ProductQuantity,UserID")] Product product)
         {
             
             if (product.ProductQuantity==0)

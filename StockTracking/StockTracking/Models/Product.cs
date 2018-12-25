@@ -26,9 +26,6 @@ namespace StockTracking.Models
         [DisplayName("Product Name")]
         [Required(ErrorMessage = "Product Name is required.")]
         public string ProductName { get; set; }
-        [DisplayName("Product Description")]
-        [Required(ErrorMessage = "Product Description is required.")]
-        public string ProductDescription { get; set; }
         [DisplayName("Product Type")]
         [Required(ErrorMessage = "Product Type is required.")]
         public Nullable<int> ProductTypeID { get; set; }
@@ -47,6 +44,7 @@ namespace StockTracking.Models
         public Nullable<decimal> ProductPrice { get; set; }
         [DisplayName("Quantity")]
         [Required(ErrorMessage = "Quantity is required.")]
+        [Range(0.0, int.MaxValue)]
         public Nullable<int> ProductQuantity { get; set; }
         [Required(ErrorMessage = "User is required.")]
         public Nullable<int> UserID { get; set; }

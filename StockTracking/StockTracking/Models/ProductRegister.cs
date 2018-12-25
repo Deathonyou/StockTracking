@@ -25,6 +25,7 @@ namespace StockTracking.Models
         public Nullable<int> ProductID { get; set; }
         [DisplayName("Registred Product Count")]
         [Required(ErrorMessage = "Quantity is required.")]
+        [Range(0.0, int.MaxValue)]
         public Nullable<int> Quantity { get; set; }
     
         public virtual Product Product { get; set; }
