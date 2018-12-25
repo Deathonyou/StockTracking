@@ -188,6 +188,7 @@
     <Compile Include="Role\UserRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />

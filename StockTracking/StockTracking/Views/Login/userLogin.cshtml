@@ -12,6 +12,9 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="~/Content/css/loginPage.css" rel="stylesheet" />
+     <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+     <link href="~/Content/css/labelFor.css" rel="stylesheet" />
     <!------ Include the above in your HEAD tag ---------->
     <title>Login</title>
 </head>
@@ -41,13 +44,17 @@
                     <div class="float">
                         @using (Html.BeginForm("userLogin", "Login", FormMethod.Post, new { @class = "form" }))
                         {
-                            <div class="form-group">
-                                @Html.LabelFor(u => u.UserName, "User Name", new { @class = "text white" })
-                                @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", placeholder = "User Name" })
+                            <div class="form-group" style="margin-bottom:4px">
+                                @Html.LabelFor(u => u.UserName, "Username", new { @class = "text white" })
+                                @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", placeholder = "Username" , maxlength="20"})
+                                @Html.ValidationMessageFor(u => u.UserName, "", new { @class = "text-danger" })
+
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(u => u.UserPassword, "Password", new { @class = "text white" })
-                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control", placeholder = "Password" })
+                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control", placeholder = "Password",maxlength="20" })
+                                @Html.ValidationMessageFor(u => u.UserPassword, "", new { @class = "text-danger" })
+
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-dark btn-md" value="Login">

@@ -25,7 +25,8 @@ namespace StockTracking.Models
     
         public int UserID { get; set; }
         [DisplayName("User Name")]
-        [Required(ErrorMessage = "User Name is required.")]
+        [Required(ErrorMessage = "Username is required.")]
+        [MaxLength(20)]
         public string UserName { get; set; }
         [DisplayName("User Surname")]
         [Required(ErrorMessage = "Product Name is required.")]
@@ -40,7 +41,8 @@ namespace StockTracking.Models
         [Required(ErrorMessage = "User Status is required.")]
         public Nullable<bool> UserIsActive { get; set; }
         [DisplayName("Password")]
-        [Required(ErrorMessage = "User Password is required.")]
+        [Required(ErrorMessage = "Password is required.")]
+        [MaxLength(20)]
         public string UserPassword { get; set; }
     
         public virtual Department Department { get; set; }

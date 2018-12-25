@@ -1,5 +1,8 @@
 ﻿/* Sticky footer styles
 -------------------------------------------------- */
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
+    padding: 20px 0!important;
+}
 html {
     position: relative;
     min-height: 100%;

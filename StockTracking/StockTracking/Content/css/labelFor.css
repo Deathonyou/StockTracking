@@ -10,3 +10,7 @@ font-size:x-large;
 .deletebtn {
 width:63px;
 }
+
+.input-validation-error{
+    border:2px solid red;
+}

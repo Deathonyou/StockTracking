@@ -25,6 +25,7 @@ namespace StockTracking.Models
         public int DepartmentID { get; set; }
         [Required(ErrorMessage = "Department Name is required.")]
         [DisplayName("Department Name")]
+        [MaxLength(40)]
         public string DepartmentName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
