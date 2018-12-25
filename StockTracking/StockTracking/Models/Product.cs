@@ -25,6 +25,7 @@ namespace StockTracking.Models
         public int ProductID { get; set; }
         [DisplayName("Product Name")]
         [Required(ErrorMessage = "Product Name is required.")]
+        [MaxLength(100, ErrorMessage = "MAX 100 Character")]
         public string ProductName { get; set; }
         [DisplayName("Product Type")]
         [Required(ErrorMessage = "Product Type is required.")]

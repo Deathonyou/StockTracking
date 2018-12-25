@@ -29,7 +29,7 @@ namespace StockTracking.Models
         [MaxLength(30)]
         public string UserName { get; set; }
         [DisplayName("User Surname")]
-        [MaxLength(30,ErrorMessage ="En Fazla 20 Karakter")]
+        [MaxLength(30,ErrorMessage ="En Fazla 30 Karakter")]
         [Required(ErrorMessage = "Product Name is required.")]
         public string UserSurname { get; set; }
         [DisplayName("Role ID")]

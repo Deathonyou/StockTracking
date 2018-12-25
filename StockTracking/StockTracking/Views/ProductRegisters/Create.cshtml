@@ -34,7 +34,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Quantity,"Registered Product Count")
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control",step="number",min="0",type="number",id= "ForbiddenCharacter" } })
+                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control ForbiddenCharacter", step = "any ", min = "0", type = "number", maxlength = "14" } })
 
                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
                     </div>
