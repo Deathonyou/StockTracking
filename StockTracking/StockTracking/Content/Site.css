@@ -11,6 +11,9 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+    background-image: url('/Content/img/bg.jpg');
+    /*background-image: url('http://ultraimg.com/images/Ho6hQWs.jpg');*/
+    background-size:cover;
 }
 
 .footer {
@@ -138,3 +141,10 @@ code {
             font-size: 12px;
             color: #777;
         }
+
+
+body .container table{
+    background-color:white;
+    opacity:0.8;
+    
+}

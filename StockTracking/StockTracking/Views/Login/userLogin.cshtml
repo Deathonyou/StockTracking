@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(u => u.UserPassword, "Password", new { @class = "text white" })
-                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control", placeholder = "Password",maxlength="20",id="ForbiddenCharacter" })
+                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control ForbiddenCharacter", placeholder = "Password",maxlength="20" })
                                 @Html.ValidationMessageFor(u => u.UserPassword, "", new { @class = "text-danger" })
 
                             </div>
