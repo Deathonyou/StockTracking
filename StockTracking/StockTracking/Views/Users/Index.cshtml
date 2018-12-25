@@ -25,12 +25,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.UserIsActive)
                         </th>
-                        @if (User.IsInRole("admin"))
-                        {
-                            <th>
-                                @Html.DisplayNameFor(model => model.UserPassword)
-                            </th>
-                        }
+                     
 
                         <th>
                             @Html.DisplayNameFor(model => model.Department.DepartmentName)
@@ -57,12 +52,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.UserIsActive)
                             </td>
-                            @if (User.IsInRole("admin"))
-                            {
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.UserPassword)
-                                </td>
-                            }
+                           
                             <td>
                                 @Html.DisplayFor(modelItem => item.Department.DepartmentName)
                             </td>
@@ -72,8 +62,8 @@
                             @if (User.IsInRole("admin"))
                             {
                                 <td>
-                                    @Html.ActionLink("Update", "Edit", new { id = item.UserID }, new { @class = "btn btn-primary btn-sm" })
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { @class = "btn btn-danger btn-sm" })
+                                    @Html.ActionLink("Update", "Edit", new { id = item.UserID }, new { @class = "btn btn-primary btn-sm", @Style="Width:50%" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { @class = "btn btn-danger btn-sm", @Style = "Width:47%" })
                                 </td>
                             }
 

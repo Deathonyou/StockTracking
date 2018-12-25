@@ -22,12 +22,12 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
+                            <td Style="width:80%">
                                 @Html.DisplayFor(modelItem => item.DepartmentName)
                             </td>
                             <td>
-                                @Html.ActionLink("Update", "Edit", new { id = item.DepartmentID }, new { @class = "btn btn-primary btn-sm" })
-                                @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentID }, new { @class = "btn btn-danger btn-sm" })
+                                @Html.ActionLink("Update", "Edit", new { id = item.DepartmentID }, new { @class = "btn btn-primary btn-sm", Style = "width:50%" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentID }, new { @class = "btn btn-danger btn-sm", Style = "width:47%" })
                             </td>
                         </tr>
                     }

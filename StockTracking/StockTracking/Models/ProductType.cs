@@ -25,7 +25,7 @@ namespace StockTracking.Models
         public int ProductTypeID { get; set; }
         [DisplayName("Product Type")]
         [Required(ErrorMessage = "Product Type is required.")]
-        
+        [MaxLength(50)]
         public string ProductName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
