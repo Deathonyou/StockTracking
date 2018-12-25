@@ -42,7 +42,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" data-toggle="tooltip" data-placement="top" title="Bu işlem geri alınamaz" class="btn btn-default" /> |
             @Html.ActionLink("Register List", "Index", null, new { @class = "btn btn-warning" })
         </div>
     }

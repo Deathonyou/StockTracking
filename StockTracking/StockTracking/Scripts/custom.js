@@ -11,7 +11,7 @@
     $('.navbar-nav li a[href="' + url + '"]').parent().addClass('active');
     $('.navbar-nav li a').filter(function () {
             return this.href == url;
-        }).parent().addClass('active');
-  
+    }).parent().addClass('active');
+ 
 
 }); 

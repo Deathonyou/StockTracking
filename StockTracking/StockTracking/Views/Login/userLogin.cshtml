@@ -13,6 +13,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="~/Content/css/loginPage.css" rel="stylesheet" />
      <script src="~/Scripts/jquery.validate.min.js"></script>
+     <script src="~/Scripts/Forbidden.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
      <link href="~/Content/css/labelFor.css" rel="stylesheet" />
     <!------ Include the above in your HEAD tag ---------->
@@ -52,7 +53,7 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(u => u.UserPassword, "Password", new { @class = "text white" })
-                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control", placeholder = "Password",maxlength="20" })
+                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control", placeholder = "Password",maxlength="20",id="ForbiddenCharacter" })
                                 @Html.ValidationMessageFor(u => u.UserPassword, "", new { @class = "text-danger" })
 
                             </div>
