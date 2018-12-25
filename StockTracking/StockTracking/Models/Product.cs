@@ -43,6 +43,7 @@ namespace StockTracking.Models
         public string AcceptDate { get; set; }
         [DisplayName("Price")]
         [Required(ErrorMessage = "Price is required.")]
+        [Range(0.0, Double.MaxValue)]
         public Nullable<decimal> ProductPrice { get; set; }
         [DisplayName("Quantity")]
         [Required(ErrorMessage = "Quantity is required.")]

@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control",maxlength="40" } })
                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +36,7 @@
             @Html.LabelFor(model => model.ProductStockState, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.ProductStockState)
+                    @Html.EditorFor(model => model.ProductStockState,new { htmlAttributes = new { @class = "form-control", maxlength = "40" } })
                     @Html.ValidationMessageFor(model => model.ProductStockState, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -47,14 +47,14 @@
             <div class="col-md-10">
                 @Html.DropDownList("BrandID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
-            </div>
+            </div>  
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.AcceptDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
-                @Html.TextBoxFor(model => model.AcceptDate, new { @class = "form-control",Value=DateTime.Now.Date.ToShortDateString()} )
+                @Html.TextBoxFor(model => model.AcceptDate, new { @class = "form-control",type="date",max=DateTime.Now.ToString("yyyy-MM-dd"),min="1890-00-00"})
  
                 @Html.ValidationMessageFor(model => model.AcceptDate, "", new { @class = "text-danger" })
             </div>
@@ -63,7 +63,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ProductPrice,
+                new { htmlAttributes = new { @class = "form-control",step="any",min="0",type="number"} })
                 @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
             </div>
         </div>
