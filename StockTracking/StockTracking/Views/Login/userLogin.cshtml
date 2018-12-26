@@ -19,8 +19,8 @@
     <!------ Include the above in your HEAD tag ---------->
     <title>Login</title>
 </head>
-<body>
-    <div class="container" style="background-color:azure">
+<body style="background-image: url('/Content/img/bg.jpg'); background-size:cover;">
+    <div class="container">
         @if (ViewBag.Error == 1)
         {
             <div style="text-align: center; margin: 0 auto; display: table;">
@@ -47,18 +47,18 @@
                         {
                             <div class="form-group" style="margin-bottom:4px">
                                 @Html.LabelFor(u => u.UserName, "Username", new { @class = "text white" })
-                                @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", placeholder = "Username" , maxlength="20"})
+                                @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", placeholder = "Username" , maxlength="20",tabindex="1"})
                                 @Html.ValidationMessageFor(u => u.UserName, "", new { @class = "text-danger" })
 
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(u => u.UserPassword, "Password", new { @class = "text white" })
-                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control ForbiddenCharacter", placeholder = "Password",maxlength="20" })
+                                @Html.PasswordFor(u => u.UserPassword, new { @class = "form-control ForbiddenCharacter", placeholder = "Password",maxlength="20",tabindex="2" })
                                 @Html.ValidationMessageFor(u => u.UserPassword, "", new { @class = "text-danger" })
 
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-dark btn-md" value="Login">
+                                <input type="submit" name="submit" class="btn btn-dark btn-md" value="Login" tabindex="3">
                             </div>
                         }
                     </div>

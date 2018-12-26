@@ -3,14 +3,14 @@
 @{
     ViewBag.Title = "Index";
 }
-<h4 style="text-align:center">Product Registered List</h4>
+<h4 style="text-align:center">Product Register   List</h4>
 <div class="container" style="width:100%">
     <div class="row">
         <div class="col-md-12">
             @if (User.IsInRole("admin") || User.IsInRole("staff"))
             {
                 <p>
-                    @Html.ActionLink("New Registered", "Create", null, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Add New Register", "Create", null, new { @class = "btn btn-primary" })
                 </p>
             }
 

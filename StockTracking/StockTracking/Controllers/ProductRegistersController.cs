@@ -54,7 +54,7 @@ namespace StockTracking.Controllers
         }
 
         // GET: ProductRegisters/Create
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles ="admin,staff")]
         public ActionResult Create()
         {
             ViewBag.ProductID = new SelectList(db.Products.Where(p => p.ProductStockState == true), "ProductID", "ProductName");
@@ -67,12 +67,11 @@ namespace StockTracking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Create([Bind(Include = "RegisterID,UserID,ProductID,Quantity")] ProductRegister productRegister)
         {
             Product product = db.Products.Find(productRegister.ProductID);//product id si ile ürünü bulduk. ekleme işleminden sonra quantity kontrol işlemini yaptıracağız.
             if (product.ProductQuantity - productRegister.Quantity == 0) product.ProductStockState = false;// ürün adedi 0 a düştüyse durumu false yap
-          
             if (ModelState.IsValid && (product.ProductQuantity - productRegister.Quantity) >= 0)//eğer miktar 0 veya üzeirndeyse işleme izin vermeyecek.
             {
                 db.ProductRegisters.Add(productRegister);
@@ -80,6 +79,10 @@ namespace StockTracking.Controllers
                 db.Entry(product).State = EntityState.Modified;//değişiklik kaydı.
                 db.SaveChanges();//save change
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.StockState= "Insufficient Stock! Available Stock : "+product.ProductQuantity;
             }
 
             ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productRegister.ProductID);
@@ -118,7 +121,6 @@ namespace StockTracking.Controllers
             Product product = new Product();
             product = db.Products.Where(w => w.ProductID == productRegister.ProductID).FirstOrDefault();//güncellenecek ürün bulundu
             ProductRegister tempProductReg = db.ProductRegisters.Where(w => w.RegisterID == productRegister.RegisterID).FirstOrDefault();//ilk değeri lazım olduğu için işlemleri yapmak için temp e atadık.
-
             bool stockQuantityIsValidToUpdate;
             if ((Convert.ToInt32(productRegister.Quantity) > Convert.ToInt32(tempProductReg.Quantity)) && Convert.ToInt32(product.ProductQuantity - (Math.Abs(Convert.ToInt32(productRegister.Quantity - tempProductReg.Quantity)))) >= 0)
                 stockQuantityIsValidToUpdate = true;
@@ -151,6 +153,10 @@ namespace StockTracking.Controllers
                 db.SaveChanges(); 
              
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.StockState = "Insufficient Stock!Available Stock: " + product.ProductQuantity;
             }
             ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productRegister.ProductID);
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productRegister.UserID);
