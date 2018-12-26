@@ -33,8 +33,24 @@ body {
 /* Not required for template or sticky footer method. */
 
 body > .container {
-    padding: 60px 15px 0;
+    padding: 40px 15px 0;
+    width: 100%;
+    background-color: white;
+    height: 100%;
+    opacity: 0.9;
+    border-radius: 35px;
+    color: black;
+    margin-top: 30px;
+    padding-bottom: 27px;
+ 
 }
+body > .container label{
+    font-weight:bold;
+}
+body > .container > .row{
+    padding-left:15px;
+}
+ 
 
 .footer > .container {
     padding-right: 15px;
@@ -143,9 +159,4 @@ code {
             color: #777;
         }
 
-
-body .container table{
-    background-color:white;
-    opacity:0.8;
-    
-}
+ 
