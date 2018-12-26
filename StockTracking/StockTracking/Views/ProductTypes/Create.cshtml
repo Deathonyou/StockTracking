@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h3 style="text-align:center">Add</h3>
+<h3 style="margin-left:12px;"><i class="fas fa-plus-square"></i>&nbsp;Add Product Type</h3>
 
 
 @using (Html.BeginForm()) 
@@ -12,12 +12,13 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4 style="margin-left:11px">ProductType</h4>
+       
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control", maxlength = "40" } })
                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
             </div>

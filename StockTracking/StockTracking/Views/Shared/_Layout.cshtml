@@ -55,7 +55,7 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
 
-                    <a style="padding-right:9px;font-family:Consolas;font-size:18px;color:azure" id="userGreeting">Hoşgeldin @HttpContext.Current.User.Identity.Name</a>
+                    <a style="padding-right:9px;font-family:Consolas;color:azure" id="userGreeting">Hoşgeldin @HttpContext.Current.User.Identity.Name</a>
                     <a class='btn btn-outline-warning' href='/Login/userLogout' id='logoutButton'>Logout</a>
                 </form>
             </div>
@@ -63,7 +63,7 @@
     </nav>
 
 
-    <div class="container" style="width:100%">
+    <div class="container" style="">
         @RenderBody()
     </div>
 

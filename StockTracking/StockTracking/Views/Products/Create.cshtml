@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2 style="text-align:center">Create</h2>
+<h3 style="margin-left:12px;"><i class="fas fa-plus-square"></i>&nbsp;Add Product</h3>
 
 
 @using (Html.BeginForm()) 
@@ -12,12 +12,12 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h3 style="margin-left:11px">Product</h3>
+         
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
             </div>
@@ -25,7 +25,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ProductTypeID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.DropDownList("ProductTypeID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ProductTypeID, "", new { @class = "text-danger" })
             </div>
@@ -33,7 +33,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ProductStockState, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.ProductStockState,new { htmlAttributes = new { @class = "form-control", maxlength = "40" } })
                     @Html.ValidationMessageFor(model => model.ProductStockState, "", new { @class = "text-danger" })
@@ -43,7 +43,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.BrandID,"Brand Name", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.DropDownList("BrandID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
             </div>  
@@ -51,7 +51,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.AcceptDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
 
                 @Html.TextBoxFor(model => model.AcceptDate, new { @class = "form-control",type="date",max=DateTime.Now.ToString("yyyy-MM-dd"),min="1890-00-00"})
  
@@ -61,7 +61,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.ProductPrice,
                 new { htmlAttributes = new { @class = "form-control ForbiddenCharacter", step="any",min="0",type="number",id= "ForbiddenCharacter",maxlength="14" } })
                 @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
@@ -70,7 +70,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ProductQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.ProductQuantity, new { htmlAttributes = new { @class = "form-control ForbiddenCharacter", step = "any ", min = "0", type = "number",  maxlength = "14" } })
                 @Html.ValidationMessageFor(model => model.ProductQuantity, "", new { @class = "text-danger" })
             </div>
@@ -78,14 +78,14 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.UserID, "User Name", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.DropDownList("UserID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-12">
                 <input type="submit" value="Add" class="btn btn-default" />
                 @Html.ActionLink("Product List","Index", null, new { @class = "btn btn-warning" })
             </div>
