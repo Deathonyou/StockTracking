@@ -43,7 +43,7 @@ namespace StockTracking.Models
         public Nullable<bool> UserIsActive { get; set; }
         [DisplayName("Password")]
         [Required(ErrorMessage = "Password is required.")]
-        [MaxLength(20)]
+        [MaxLength(35)]
         public string UserPassword { get; set; }
     
         public virtual Department Department { get; set; }

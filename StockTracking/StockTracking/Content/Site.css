@@ -11,7 +11,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    /*background-image: url('/Content/img/bg.jpg');*/
+    background-image: url('/Content/img/bg.jpg');
     background-color:#fafafa;    
     /*background-image: url('http://ultraimg.com/images/Ho6hQWs.jpg');*/
     background-size:cover;

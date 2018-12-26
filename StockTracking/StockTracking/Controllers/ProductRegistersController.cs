@@ -85,7 +85,7 @@ namespace StockTracking.Controllers
                 ViewBag.StockState= "Insufficient Stock! Available Stock : "+product.ProductQuantity;
             }
 
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productRegister.ProductID);
+            ViewBag.ProductID = new SelectList(db.Products.Where(u=>u.ProductStockState==true), "ProductID", "ProductName", productRegister.ProductID);
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productRegister.UserID);
             return View(productRegister);
         }
@@ -158,7 +158,7 @@ namespace StockTracking.Controllers
             {
                 ViewBag.StockState = "Insufficient Stock!Available Stock: " + product.ProductQuantity;
             }
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productRegister.ProductID);
+            ViewBag.ProductID = new SelectList(db.Products.Where(u => u.ProductStockState == true), "ProductID", "ProductName", productRegister.ProductID);
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productRegister.UserID);
             return View(productRegister);
 
