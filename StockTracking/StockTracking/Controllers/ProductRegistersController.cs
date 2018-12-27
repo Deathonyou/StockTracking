@@ -58,7 +58,7 @@ namespace StockTracking.Controllers
         public ActionResult Create()
         {
             ViewBag.ProductID = new SelectList(db.Products.Where(p => p.ProductStockState == true), "ProductID", "ProductName");
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName");
+            ViewBag.UserID = new SelectList(db.Users.Where(u=>u.UserIsActive==true), "UserID", "UserName");
             return View();
         }
 
@@ -86,7 +86,7 @@ namespace StockTracking.Controllers
             }
 
             ViewBag.ProductID = new SelectList(db.Products.Where(u=>u.ProductStockState==true), "ProductID", "ProductName", productRegister.ProductID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productRegister.UserID);
+            ViewBag.UserID = new SelectList(db.Users.Where(u=>u.UserIsActive==true), "UserID", "UserName", productRegister.UserID);
             return View(productRegister);
         }
 
@@ -105,8 +105,8 @@ namespace StockTracking.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productRegister.ProductID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productRegister.UserID);
+            ViewBag.ProductID = new SelectList(db.Products.Where(p=>p.ProductStockState==true), "ProductID", "ProductName", productRegister.ProductID);
+            ViewBag.UserID = new SelectList(db.Users.Where(u=>u.UserIsActive==true), "UserID", "UserName", productRegister.UserID);
             return View(productRegister);
         }
 
@@ -159,7 +159,7 @@ namespace StockTracking.Controllers
                 ViewBag.StockState = "Insufficient Stock!Available Stock: " + product.ProductQuantity;
             }
             ViewBag.ProductID = new SelectList(db.Products.Where(u => u.ProductStockState == true), "ProductID", "ProductName", productRegister.ProductID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productRegister.UserID);
+            ViewBag.UserID = new SelectList(db.Users.Where(u=>u.UserIsActive==true), "UserID", "UserName", productRegister.UserID);
             return View(productRegister);
 
         }

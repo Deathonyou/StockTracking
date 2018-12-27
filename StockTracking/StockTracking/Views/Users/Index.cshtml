@@ -66,8 +66,8 @@
                             @if (User.IsInRole("admin"))
                             {
                                 <td>
-                                    @Html.ActionLink("Update", "Edit", new { id = item.UserID }, new { @class = "btn btn-primary btn-sm", @Style="Width:50%" })
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { @class = "btn btn-danger btn-sm", @Style = "Width:47%" })
+                                    @Html.ActionLink("Update", "Edit", new { id = item.UserID }, new { @class = "btn btn-primary btn-sm mb-1", @Style="Width:100%" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { @class = "btn btn-danger btn-sm", @Style = "Width:100%" })
                                 </td>
                             }
 

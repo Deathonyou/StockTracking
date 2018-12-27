@@ -84,7 +84,7 @@ namespace StockTracking.Controllers
             }
             ViewBag.BrandID = new SelectList(db.Brands, "BrandID", "BrandName", product.BrandID);
             ViewBag.ProductTypeID = new SelectList(db.ProductTypes, "ProductTypeID", "ProductName", product.ProductTypeID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", product.UserID);
+            ViewBag.UserID = new SelectList(db.Users.Where(u=>u.UserIsActive==true), "UserID", "UserName", product.UserID);
             return View(product);
         }
 

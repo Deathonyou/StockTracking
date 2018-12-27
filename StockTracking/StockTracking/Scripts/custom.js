@@ -8,7 +8,6 @@
 
     //Get Active Page
     var url = window.location.href;
-  
     $('.navbar-nav li a[href="' + url + '"]').parent().addClass('active');
     $('.navbar-nav li a').filter(function () { 
             return this.href == url;

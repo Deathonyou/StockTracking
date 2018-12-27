@@ -24,7 +24,6 @@ namespace StockTracking.Controllers
             }
             else
             {
-               
                 var userDepartmentID = db.Users.Where(u=>u.UserName==User.Identity.Name).Select(d=>d.DepartmentID);
                 var UserSpecTeam = db.Users.Where(u => u.DepartmentID == (userDepartmentID.ToList().FirstOrDefault()));
                 return View(UserSpecTeam.ToList());
